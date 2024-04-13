@@ -12,15 +12,15 @@ load_dotenv()
 burn_map = {}
 my_netuids = [28]
 
-tele_chat_id = '-4055355950'
+tele_chat_id = os.getenv("TELE_CHAT_ID")
 tele_report_token = os.getenv("TELE_REPORT_TOKEN")
 reward_map = {}
 
-cold_keys = [
-    '5HdG2X4Xrbiw5C752yzqraVmSZhTWptkVMCZRwo8gMzppFPi',
-    '5D7nqA4MwzHHksK8FHwiB4Z4WBzusKDUcBCWWZ8rQbqj2oym',
-    '5HeYXUnv3sGPV43ariRoqZhMonuE5H37qQnP5ro7qdoF7xp1'
-]
+cold_keys = {
+    '5HdG2X4Xrbiw5C752yzqraVmSZhTWptkVMCZRwo8gMzppFPi': 'ws2801',
+    '5D7nqA4MwzHHksK8FHwiB4Z4WBzusKDUcBCWWZ8rQbqj2oym': 'ws2802',
+    '5HeYXUnv3sGPV43ariRoqZhMonuE5H37qQnP5ro7qdoF7xp1': 'ws2803'
+}
 hotkeys = {
     '5CPgFFmjEnFSnV7qFkDvHXxUEmT7XjFWEz829ymFekADqyaX': 'wl1.hk1',
     '5EAYBsnJgGpTXm3PQmLGJ9MZS5QCLc1PA1yTFvBQSZZ4aD51': 'wl1.hk2',
@@ -94,7 +94,8 @@ def send_report():
     rewards = []
     need_send = False
     for netuid in my_netuids:
-        string, has_change = get_subnet_reward(netuid, cold_keys, rewards)
+        string, has_change = get_subnet_reward(netuid, list(cold_keys.keys()),
+                                               rewards)
         if has_change:
             need_send = True
         if string != '':

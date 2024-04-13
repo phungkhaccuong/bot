@@ -12,16 +12,16 @@ load_dotenv()
 burn_map = {}
 my_netuids = [5]
 
-tele_chat_id = '-4138429382'
+tele_chat_id = os.getenv("TELE_CHAT_ID")
 tele_report_token = os.getenv("TELE_REPORT_TOKEN")
 reward_map = {}
 
-cold_keys = [
-    '5HU3TMzUSXxFmxBvmUN5Yf1qqxvfeebNXb625VhYDrex2q3i',
-    '5Fh6rCP6Cj2bsURiz1EGENseKcwmGUCpyQT15S6fcrxiEPJ8',
-    '5CzDXfhh2dXCMrk5KJLecaQoiVXXjeGswtCTnT1PfLBARsXv'
-    '5FcKjwtX3qrNL8toxTqfyKtj6jNbUYYHrFWwBghhxsZ2iFmX'
-]
+cold_keys = {
+    '5HU3TMzUSXxFmxBvmUN5Yf1qqxvfeebNXb625VhYDrex2q3i': 'ws501',
+    '5CzDXfhh2dXCMrk5KJLecaQoiVXXjeGswtCTnT1PfLBARsXv': 'ws502',
+    '5Fh6rCP6Cj2bsURiz1EGENseKcwmGUCpyQT15S6fcrxiEPJ8': 'ws503',
+    '5FcKjwtX3qrNL8toxTqfyKtj6jNbUYYHrFWwBghhxsZ2iFmX': 'ws504',
+}
 hotkeys = {
     '5GRjd5FrshcP1LDF4ENc3CHS2kAde8v5PxstR6kLDkzYfonm': 'ws501.hk1',
     '5Fk1BFBscpM8kJxtxB5JGMF2TPqtjQuyP2dPMhEJtFCitXoV': 'ws501.hk2',
@@ -69,7 +69,7 @@ hotkeys = {
 }
 
 
-def get_subnet_reward(netuid, cold_keys, rewards):
+def get_subnet_reward(netuid, colds, rewards):
     x = PrettyTable()
     x.field_names = ["STT", "UID", "HOT", "INCENTIVE", "REWARDS", "RANK"]
     url = 'https://taostats.io/wp-admin/admin-ajax.php'
@@ -85,7 +85,7 @@ def get_subnet_reward(netuid, cold_keys, rewards):
     incentives = df['INCENTIVE']
 
     has_change = False
-    df = df[df['COLDKEY'].isin(cold_keys)]
+    df = df[df['COLDKEY'].isin(colds)]
     if df.empty:
         return '', has_change
 
@@ -121,7 +121,8 @@ def send_report():
     rewards = []
     need_send = False
     for netuid in my_netuids:
-        string, has_change = get_subnet_reward(netuid, cold_keys, rewards)
+        string, has_change = get_subnet_reward(netuid, list(cold_keys.keys()),
+                                               rewards)
         if has_change:
             need_send = True
         if string != '':
