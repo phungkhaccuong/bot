@@ -1,11 +1,13 @@
-import requests
+import os
 import time
 from io import StringIO
-from prettytable import PrettyTable
-import pandas as pd
 
-import os
+import pandas as pd
+import requests
 from dotenv import load_dotenv
+from prettytable import PrettyTable
+
+from constants import sn28_hotkeys as hotkeys, sn28_cold_keys as cold_keys
 
 load_dotenv()
 
@@ -15,31 +17,6 @@ my_netuids = [28]
 tele_chat_id = os.getenv("TELE_CHAT_ID")
 tele_report_token = os.getenv("TELE_REPORT_TOKEN")
 reward_map = {}
-
-cold_keys = {
-    '5HdG2X4Xrbiw5C752yzqraVmSZhTWptkVMCZRwo8gMzppFPi': 'ws2801',
-    '5D7nqA4MwzHHksK8FHwiB4Z4WBzusKDUcBCWWZ8rQbqj2oym': 'ws2802',
-    '5HeYXUnv3sGPV43ariRoqZhMonuE5H37qQnP5ro7qdoF7xp1': 'ws2803'
-}
-hotkeys = {
-    '5CPgFFmjEnFSnV7qFkDvHXxUEmT7XjFWEz829ymFekADqyaX': 'wl1.hk1',
-    '5EAYBsnJgGpTXm3PQmLGJ9MZS5QCLc1PA1yTFvBQSZZ4aD51': 'wl1.hk2',
-    '5Dho8f9xkYV3om7ZVU7bVFWfe3pJDscActg4nC3uCPqFwZcc': 'wl1.hk3',
-    '5HmJhpvp8tf6CiCRFmsAw8ZHacogAMvXrW85xU5mNsP9NELb': 'wl1.hk4',
-    '5CMH6e5VagDNJxeR7U94GbPLqnXEdhzb61imdrZ1HPRsrX2j': 'wl1.hk5',
-
-    '5E78VfZrZG8jufU3HLXXS6MVPUvWkgHP2CTYiopwAgUEvggG': 'wl2.hk1',
-    '5Fc7tiFSpPbNxaLiK3RM5d7i12af5U3yq4Pufix9nZjt2Ykz': 'wl2.hk2',
-    '5DceT6g9hjEpCNFQfVavjC6KJYyvkPajyHsyqismmRBfNkpT': 'wl2.hk3',
-    '5Dh8vYkGe74JgbDhqYDdXmieknJxnoGXDfENAhtUTPen7XaG': 'wl2.hk4',
-    '5FdzYMaXpPKxVDoEkZoF3DZKRFYC3n9Vnux2GD3YLJ8PTLHi': 'wl2.hk5',
-
-    '5HThjQQR8ysi6u8drthhUHKn76HEAFMm4KJBymS2stojjBgY': 'wl3.hk1',
-    '5HVtCiyTu47e4fSwvomPr8rv9HFbHqXP8NoWTVMQ7ENbuwxz': 'wl3.hk2',
-    '5H3bSpMkSBe5b2UdvMv4qqpgPikCeGr1a2vtszC7q7PcApSr': 'wl3.hk3',
-    '5EZPMgiZCDz8z4u71yQPwTguxVNrvr2HDHsUDP3c2oaV6etC': 'wl3.hk4',
-    '5G6XDon6bDxdFHtd3dBzTcMUAsu8EaMpDmfnKEZU3hAfo5Md': 'wl3.hk5'
-}
 
 
 def get_subnet_reward(netuid, cold_keys, rewards):

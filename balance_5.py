@@ -6,7 +6,7 @@ import requests
 from dotenv import load_dotenv
 from prettytable import PrettyTable
 
-from report_5 import cold_keys
+from constants import sn5_cold_keys as cold_keys
 
 load_dotenv()
 
