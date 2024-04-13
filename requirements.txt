@@ -2,3 +2,5 @@ lxml
 pandas
 prettytable
 requests
+python-dotenv==1.0.1
+bittensor==6.7.0

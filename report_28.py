@@ -4,11 +4,16 @@ from io import StringIO
 from prettytable import PrettyTable
 import pandas as pd
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 burn_map = {}
 my_netuids = [28]
 
 tele_chat_id = '-4055355950'
-tele_report_token = '6408369939:AAHKfnIxyihyXoJ3p1WNN2cgaSD4ielBJtw'
+tele_report_token = os.getenv("TELE_REPORT_TOKEN")
 reward_map = {}
 
 cold_keys = [
