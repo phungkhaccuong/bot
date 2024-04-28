@@ -79,14 +79,21 @@ if __name__ == "__main__":
         help="max burn",
         required=True
     )
+    parser.add_argument(
+        "--network",
+        type=str,
+        help="network",
+        default='local'
+    )
     args = parser.parse_args()
 
     netuid = args.netuid
     wallet_name = args.wallet_name
     hotkeys = args.hotkeys.split(',')
     max_burn = args.max_burn
+    network = args.network
 
-    subtensor = bt.subtensor('local')
+    subtensor = bt.subtensor(network=network)
     try:
         for hotkey in hotkeys:
             wallet = bt.wallet(name=wallet_name, hotkey=hotkey)
