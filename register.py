@@ -48,9 +48,9 @@ def main(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str):
             registered_map[hotkey] = True
             send_tele(
                 f'register successfully {netuid} {wallet_name} {hotkey} {burn}')
-        else:
-            send_tele(
-                f'register failed {netuid} {wallet_name} {hotkey} {burn} {err_msg}')
+        # else:
+        #     send_tele(
+        #         f'register failed {netuid} {wallet_name} {hotkey} {burn} {err_msg}')
 
 
 if __name__ == "__main__":
@@ -94,15 +94,19 @@ if __name__ == "__main__":
     network = args.network
 
     subtensor = bt.subtensor(network=network)
-    try:
-        for hotkey in hotkeys:
-            wallet = bt.wallet(name=wallet_name, hotkey=hotkey)
-            wallet.coldkey
 
-            while registered_map.get(hotkey) is None or registered_map[hotkey] \
-                    == False:
-                main(subtensor, wallet, hotkey)
-                time.sleep(1)
-    except Exception as e:
-        bt.logging.error("[REGISTER] Error: ", e)
-        send_tele(f'registered failed {e}')
+    while True:
+        try:
+            for hotkey in hotkeys:
+                wallet = bt.wallet(name=wallet_name, hotkey=hotkey)
+                wallet.coldkey
+
+                while registered_map.get(hotkey) is None or registered_map[hotkey] \
+                        == False:
+                    main(subtensor, wallet, hotkey)
+                    time.sleep(1)
+        except Exception as e:
+            bt.logging.error("[REGISTER] Error: ", e)
+            # send_tele(f'registered failed {e}')
+
+        time.sleep(60)
