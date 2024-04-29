@@ -65,7 +65,7 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
     if has_change:
         data = {
             "chat_id": tele_chat_id,
-            "text": f'<pre>{table.get_string()}</pre>',
+            "text": f'Balance<pre>{table.get_string()}</pre>',
             "parse_mode": "HTML"
         }
 

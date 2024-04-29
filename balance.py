@@ -4,7 +4,7 @@ import time
 import bittensor as bt
 from dotenv import load_dotenv
 
-from constants import sn28_cold_keys as cold_keys
+from constants import cold_keys
 from functions import send_balance_report
 
 load_dotenv()

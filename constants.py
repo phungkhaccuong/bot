@@ -1,7 +1,13 @@
-sn28_cold_keys = {
+cold_keys = {
+    '5H73vxEPYcfmFeWtSbSGtpenzvuYkE6jEohR3kb7VQdfNwtx': 'wl0',
+    '5GTJ1jzQocwMmtRyU21LN1CpVoSjcuvo6SpYc2TcDdFJJMt6': 'sn23',
     '5HdG2X4Xrbiw5C752yzqraVmSZhTWptkVMCZRwo8gMzppFPi': 'ws2801',
     '5D7nqA4MwzHHksK8FHwiB4Z4WBzusKDUcBCWWZ8rQbqj2oym': 'ws2802',
-    '5HeYXUnv3sGPV43ariRoqZhMonuE5H37qQnP5ro7qdoF7xp1': 'ws2803'
+    '5HeYXUnv3sGPV43ariRoqZhMonuE5H37qQnP5ro7qdoF7xp1': 'ws2803',
+    '5HU3TMzUSXxFmxBvmUN5Yf1qqxvfeebNXb625VhYDrex2q3i': 'ws501',
+    '5CzDXfhh2dXCMrk5KJLecaQoiVXXjeGswtCTnT1PfLBARsXv': 'ws502',
+    '5Fh6rCP6Cj2bsURiz1EGENseKcwmGUCpyQT15S6fcrxiEPJ8': 'ws503',
+    '5FcKjwtX3qrNL8toxTqfyKtj6jNbUYYHrFWwBghhxsZ2iFmX': 'ws504',
 }
 sn28_hotkeys = {
     '5CPgFFmjEnFSnV7qFkDvHXxUEmT7XjFWEz829ymFekADqyaX': 'wl1.hk1',
@@ -23,12 +29,6 @@ sn28_hotkeys = {
     '5G6XDon6bDxdFHtd3dBzTcMUAsu8EaMpDmfnKEZU3hAfo5Md': 'wl3.hk5'
 }
 
-sn5_cold_keys = {
-    '5HU3TMzUSXxFmxBvmUN5Yf1qqxvfeebNXb625VhYDrex2q3i': 'ws501',
-    '5CzDXfhh2dXCMrk5KJLecaQoiVXXjeGswtCTnT1PfLBARsXv': 'ws502',
-    '5Fh6rCP6Cj2bsURiz1EGENseKcwmGUCpyQT15S6fcrxiEPJ8': 'ws503',
-    '5FcKjwtX3qrNL8toxTqfyKtj6jNbUYYHrFWwBghhxsZ2iFmX': 'ws504',
-}
 sn5_hotkeys = {
     '5GRjd5FrshcP1LDF4ENc3CHS2kAde8v5PxstR6kLDkzYfonm': 'ws501.hk1',
     '5Fk1BFBscpM8kJxtxB5JGMF2TPqtjQuyP2dPMhEJtFCitXoV': 'ws501.hk2',
@@ -73,4 +73,13 @@ sn5_hotkeys = {
     '5HYDBEseofvE5KzmmUBy7XcrYULvYgkMdxG9XizvGGLkJGX8': 'ws504.hk8',
     '5DWzH6HMgXAtUmR1A9HuW2HdMwqes5kK3Hyu8DfDByuVpdJj': 'ws504.hk9',
     '5GR2fn4rLPPs2rZnYbRez49r1aFZJYYW82WHS2G3W1WajkpX': 'ws504.hk10',
+}
+
+
+sn31_hotkeys = {
+    '5DZdizJopRXtQyosZqjp4giFGo4ozZqyyP2v7ZYjBzFpmWJD': 'wl0.hk1',
+}
+
+sn26_hotkeys = {
+    '5DZdizJopRXtQyosZqjp4giFGo4ozZqyyP2v7ZYjBzFpmWJD': 'wl0.hk1',
 }

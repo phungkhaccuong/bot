@@ -3,7 +3,7 @@ import time
 
 from dotenv import load_dotenv
 
-from constants import sn5_hotkeys as hotkeys, sn5_cold_keys as cold_keys
+from constants import sn5_hotkeys as hotkeys, cold_keys
 from functions import send_miner_report
 
 load_dotenv()
