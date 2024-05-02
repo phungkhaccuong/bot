@@ -1,3 +1,4 @@
+# Description: This file contains all the constants used in the project.
 cold_keys = {
     '5H73vxEPYcfmFeWtSbSGtpenzvuYkE6jEohR3kb7VQdfNwtx': 'wl0',
     '5GTJ1jzQocwMmtRyU21LN1CpVoSjcuvo6SpYc2TcDdFJJMt6': 'sn23',
@@ -8,7 +9,19 @@ cold_keys = {
     '5CzDXfhh2dXCMrk5KJLecaQoiVXXjeGswtCTnT1PfLBARsXv': 'ws502',
     '5Fh6rCP6Cj2bsURiz1EGENseKcwmGUCpyQT15S6fcrxiEPJ8': 'ws503',
     '5FcKjwtX3qrNL8toxTqfyKtj6jNbUYYHrFWwBghhxsZ2iFmX': 'ws504',
+    '5Cz5CSNK4Xvp7CqqVcPgUgC44SLTRaXTan695XkygZwrHZyF': 'ws1602',
+    '5CULQySsvYEMjWJxULdjTvLeKT9k8CyWzxTaTR8vFTr1ax1Q': 'ws1603',
+    '5CwK1a1oACLitJHnFZgzZdUQNmaPYGnweQ5EwXoJW5DzfXsn': 'ws1604',
+    '5EPCHoZHYgLQ5RGj1HFkoUf6AsPFqiaogcYPXSUoZuDtQash': 'ws1605',
+    '5DhfVdWViSoCd2wiYkU5cSpcs9zH73RsKa3rqSk35gt3Dj6y': 'ws1606',
+    '5DkSqZ2ywudBG8J631kqHo1WEyoTxVaiXVc6eG9WQVeXWDNq': 'ws1607',
+    '5HiyCsb2kTbszyBUttq5yPZfRk8sgcoCWFbMAemayrh2VDM6': 'ws1608',
+    '5EL9tVqqfDRmoSU9UtLhoKJs1vjHgM1HBaQTkqExQimnztmy': 'ws1609',
+    '5H3q6VhPXEpoft8eHeCQ1u4CLkktZmMZoyuTsJFXxN3N7TEG': 'ws1610',
+    '5H3Das24fNeTQtLdR1rgW8RxTo947GhZ8AL87HX7ZACGkPAs': 'ws1611',
+    '5FnBJMsSEFnfPGJqt3LHB5ZWmw5xtHXvcpZy5qrBeG9HLd4X': 'ws1612',
 }
+
 sn28_hotkeys = {
     '5CPgFFmjEnFSnV7qFkDvHXxUEmT7XjFWEz829ymFekADqyaX': 'wl1.hk1',
     '5EAYBsnJgGpTXm3PQmLGJ9MZS5QCLc1PA1yTFvBQSZZ4aD51': 'wl1.hk2',
@@ -75,6 +88,21 @@ sn5_hotkeys = {
     '5GR2fn4rLPPs2rZnYbRez49r1aFZJYYW82WHS2G3W1WajkpX': 'ws504.hk10',
 }
 
+sn16_hotkeys = {
+    '5DZdizJopRXtQyosZqjp4giFGo4ozZqyyP2v7ZYjBzFpmWJD': 'wl0.hk1',
+    '5EtYFsyd8tAwB71v7pELeH4VF4Gr9m3uJSGfsH9uR9tFpiKk': 'sn23.hk1',
+    '5EEuX5CXhzvnkcH84sG6mZErWVmyytEVfemDrQedkBWE9LJS': 'sn1602.hk1',
+    '5FKj4xpSwbCXaCzR2mYRfvVDFXsVkn69fUqHwPnFVkz1uuFM': 'sn1603.hk1',
+    '5CtodHtGwDH3yrdczmNXpG1TumYNgLCWPqJdY4x5ykLHPZHQ': 'sn1604.hk1',
+    '5DNnmiVModiMEKMXiC2DZ4LtjySUkEtx887pDy6NzDxoNAJv': 'sn1605.hk1',
+    '5C4rF7fc4LkQc1eZenb6pJUeNCKpLnym4NaVk9kkq6PnbsGY': 'sn1606.hk1',
+    '5GhP5vALh3y2ZpHCSKmxr3DWD2BZ8H58RHWwWNbngmp9xV8x': 'sn1607.hk1',
+    '5EsvWRvv65xEtp8WF5LYcnGvzuCtRxFHjB4C6y6wi2yUb4Vy': 'sn1608.hk1',
+    '5DhK3u742EbYfSV3YPAWxA5wdRNzTb7u4vU3MqMuV1Jw5a9j': 'sn1609.hk1',
+    '5EyKWJSTvoLCrcHLeEswESLJ7ZKdsBdbtip4yAdWELiizPvi': 'sn1610.hk1',
+    '5CDiaj9Z5huxXJvSuNDbsZpQrASN3a8MM2fMJk25WZXtJ7dL': 'sn1611.hk1',
+    '5CnmJ45j5unnS8m38SoFrJ12yZbxXXbTHMDHJ6B85bVP3VNN': 'sn1612.hk1',
+}
 
 sn31_hotkeys = {
     '5DZdizJopRXtQyosZqjp4giFGo4ozZqyyP2v7ZYjBzFpmWJD': 'wl0.hk1',
