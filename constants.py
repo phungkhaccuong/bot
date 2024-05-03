@@ -140,10 +140,10 @@ sn16_hotkeys = {
     '5Dyu4VrgtXobV7KmUwzLD1ickHHaT9GSMPC222xmz9ocgwpd': 'sn1614.hk1',
     '5CMKJcmdtMsrFG2xCmssmeQCnKVbaeYAvGjoTc89hPij6gsz': 'sn1615.hk1',
     '5E27C7ppJ8XZcYN5q4jysSxvKvALfy7nP4tZknMCjrhKwj9H': 'sn1616.hk1',
-    '5GhNfSHmkhu6CvKsmrAAPZybpwtVQADQt9okRWhVYLcisSKf': 'sn1617.hk1',
-    '5CMYoWbtnEZYXwPtECzwoxZg1FbE15o6ESod8wmC97E2uN6u': 'sn1618.hk1',
-    '5Cw9AeGi133f4TRjfkgZiHxi7GPTSdZZ6hQReWUeLq8cgpp7': 'sn1619.hk1',
-    '5CoQ7Tu1W4tNWD2Y3wnZSaijQVPHULJVyURNZHuzEDHbT7iG': 'sn1620.hk1',
+    '5FeP13Pu5zxG8Tqw2yHUniiGbuyV4gwZ98aWCYbxev68WERh': 'sn1617.hk1',
+    '5F1mXwfJ97S7AS34imJ1zGmggaCgHori4eXBceXsccYkbV2g': 'sn1618.hk1',
+    '5HTvw5FVPaePL7XCDzwQabTjbjbvfgPPsf7K88cRmBaisRg1': 'sn1619.hk1',
+    '5EZGfL2m5eaa8qwFhevwhHrskFsXFSNJgAmFaQPPSSceGaSq': 'sn1620.hk1',
 }
 
 sn31_hotkeys = {
