@@ -1,30 +1,4 @@
 # Description: This file contains all the constants used in the project.
-# ├──
-# │   sn1617 (5GhNfSHmkhu6CvKsmrAAPZybpwtVQADQt9okRWhVYLcisSKf)
-# │   └── hk1 (5FeP13Pu5zxG8Tqw2yHUniiGbuyV4gwZ98aWCYbxev68WERh)
-# ├──
-# │   sn1613 (5Eo1iBycDUJUgt33MsLM4g8yvfTQG9nAFLpQRDhJbJUeYJTG)
-# │   └── hk1 (5CoAyxsU4NJLcHLkaYXZbkLJ9yZV4z7qwyeB2FFJ3tJFSrBH)
-# ├──
-# │   sn1618 (5CMYoWbtnEZYXwPtECzwoxZg1FbE15o6ESod8wmC97E2uN6u)
-# │   └── hk1 (5F1mXwfJ97S7AS34imJ1zGmggaCgHori4eXBceXsccYkbV2g)
-# ├──
-# │   sn1614 (5FA7oPVrLGh4kjrCFtwhxKFSNnBH42PLoqsTMmQnQtZ7hbSt)
-# │   └── hk1 (5Dyu4VrgtXobV7KmUwzLD1ickHHaT9GSMPC222xmz9ocgwpd)
-# ├──
-# │   sn1615 (5FhjJvnKUQBn9dp4i4ipky6gejeLDaWoVKegFF829mRc3UGx)
-# │   └── hk1 (5CMKJcmdtMsrFG2xCmssmeQCnKVbaeYAvGjoTc89hPij6gsz)
-# ├──
-# │   sn1616 (5EWdXXvTZMBRb6nb9wCsAD2uBXSCHM2rdTwPsgQ51B9GLAVD)
-# │   └── hk1 (5E27C7ppJ8XZcYN5q4jysSxvKvALfy7nP4tZknMCjrhKwj9H)
-# ├──
-# │   sn1620 (5CoQ7Tu1W4tNWD2Y3wnZSaijQVPHULJVyURNZHuzEDHbT7iG)
-# │   └── hk1 (5EZGfL2m5eaa8qwFhevwhHrskFsXFSNJgAmFaQPPSSceGaSq)
-# └──
-#     sn1619 (5Cw9AeGi133f4TRjfkgZiHxi7GPTSdZZ6hQReWUeLq8cgpp7)
-#     └── hk1 (5HTvw5FVPaePL7XCDzwQabTjbjbvfgPPsf7K88cRmBaisRg1)
-
-
 cold_keys = {
     '5H73vxEPYcfmFeWtSbSGtpenzvuYkE6jEohR3kb7VQdfNwtx': 'wl0',
     '5GTJ1jzQocwMmtRyU21LN1CpVoSjcuvo6SpYc2TcDdFJJMt6': 'sn23',
