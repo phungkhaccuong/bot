@@ -40,6 +40,7 @@ tele_bot_token = os.getenv("TELE_REPORT_TOKEN")
 tele_chat_id = os.getenv("TELE_CHAT_ID")
 blocks_since_epoch = 0
 
+
 def send_tele(text):
     data = {
         "chat_id": tele_chat_id,
@@ -49,6 +50,7 @@ def send_tele(text):
     requests.post(
         f'https://api.telegram.org/bot{tele_bot_token}/sendMessage',
         json=data)
+
 
 def direct_register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str):
     subnet = subtensor.get_subnet_info(netuid=netuid)
@@ -65,8 +67,7 @@ def direct_register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str):
             f'register successfully {netuid} {wallet_name} {hotkey} {subnet.burn}')
 
 
-
-def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds=10, max_burn=2):
+def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float=11, max_burn=2, target_block=343):
     global blocks_since_epoch
     subnet = subtensor.get_subnet_info(netuid=netuid)
     burn = subnet.burn.__float__()
@@ -77,9 +78,8 @@ def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_secon
         bt.logging.info(f"Blocks_since_epoch: {new_blocks_since_epoch}. Burn: {burn}")
 
     blocks_since_epoch = new_blocks_since_epoch
-    # if blocks_since_epoch == parameters.adjustment_interval - 1 and burn < max_burn:
-    if blocks_since_epoch == 343 and burn < max_burn:
-        bt.logging.info(f"Waiting for registration: {burn}")
+    if blocks_since_epoch == target_block and burn < max_burn:
+        bt.logging.info(f"Block {target_block} reached, waiting for registration: {burn}")
         time.sleep(wait_seconds)
         success, err_msg = subtensor._do_burned_register(
             netuid=netuid,
@@ -128,13 +128,19 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--wait_seconds",
-        type=int,
+        type=float,
         help="seconds to wait until actual burn",
         default=10
     )
     parser.add_argument(
         "--direct",
         action=argparse.BooleanOptionalAction
+    )
+    parser.add_argument(
+        "--target_block",
+        type=int,
+        help="Block number just before registration",
+        default=343
     )
     args = parser.parse_args()
 
@@ -144,6 +150,7 @@ if __name__ == "__main__":
     max_burn = args.max_burn
     network = args.network
     wait_seconds = args.wait_seconds
+    target_block =args.target_block
 
     subtensor = bt.subtensor(network=network)
 
@@ -155,7 +162,7 @@ if __name__ == "__main__":
     else:
         while True:
             try:
-                register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn)
+                register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=343)
                 time.sleep(1)
             except Exception as e:
                 bt.logging.error("[REGISTER] Error: ", e)
