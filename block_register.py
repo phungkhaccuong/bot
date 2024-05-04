@@ -50,6 +50,21 @@ def send_tele(text):
         f'https://api.telegram.org/bot{tele_bot_token}/sendMessage',
         json=data)
 
+def direct_register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str):
+    subnet = subtensor.get_subnet_info(netuid=netuid)
+    success, err_msg = subtensor._do_burned_register(
+        netuid=netuid,
+        wallet=wallet,
+        wait_for_inclusion=False,
+        wait_for_finalization=True,
+    )
+
+    bt.logging.info(f"[REGISTER] Success: {success}, Error: {err_msg}")
+    if success or 'AlreadyRegistered' in err_msg['name']:
+        send_tele(
+            f'register successfully {netuid} {wallet_name} {hotkey} {subnet.burn}')
+
+
 
 def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds=10, max_burn=2):
     global blocks_since_epoch
@@ -115,6 +130,10 @@ if __name__ == "__main__":
         help="seconds to wait until actual burn",
         default=10
     )
+    parser.add_argument(
+        "--direct",
+        action=argparse.BooleanOptionalAction
+    )
     args = parser.parse_args()
 
     netuid = args.netuid
@@ -126,11 +145,16 @@ if __name__ == "__main__":
 
     subtensor = bt.subtensor(network=network)
 
-    while True:
-        try:
-            wallet = bt.wallet(name=wallet_name, hotkey=hotkey)
-            register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn)
-            time.sleep(1)
-        except Exception as e:
-            bt.logging.error("[REGISTER] Error: ", e)
-            time.sleep(60)
+    wallet = bt.wallet(name=wallet_name, hotkey=hotkey)
+    wallet.coldkey
+
+    if args.direct:
+        direct_register(subtensor, wallet, hotkey)
+    else:
+        while True:
+            try:
+                register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn)
+                time.sleep(1)
+            except Exception as e:
+                bt.logging.error("[REGISTER] Error: ", e)
+                time.sleep(60)
