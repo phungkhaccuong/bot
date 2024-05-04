@@ -77,7 +77,9 @@ def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_secon
         bt.logging.info(f"Blocks_since_epoch: {new_blocks_since_epoch}. Burn: {burn}")
 
     blocks_since_epoch = new_blocks_since_epoch
-    if blocks_since_epoch == parameters.adjustment_interval - 1 and burn < max_burn:
+    # if blocks_since_epoch == parameters.adjustment_interval - 1 and burn < max_burn:
+    if blocks_since_epoch == 343 and burn < max_burn:
+        bt.logging.info(f"Waiting for registration: {burn}")
         time.sleep(wait_seconds)
         success, err_msg = subtensor._do_burned_register(
             netuid=netuid,
