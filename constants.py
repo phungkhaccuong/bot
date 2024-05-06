@@ -9,6 +9,8 @@ cold_keys = {
     '5CzDXfhh2dXCMrk5KJLecaQoiVXXjeGswtCTnT1PfLBARsXv': 'ws502',
     '5Fh6rCP6Cj2bsURiz1EGENseKcwmGUCpyQT15S6fcrxiEPJ8': 'ws503',
     '5FcKjwtX3qrNL8toxTqfyKtj6jNbUYYHrFWwBghhxsZ2iFmX': 'ws504',
+    '5EAWhStQFp4F5AEG43eokdJtE2ZKwtLuFzcoRdXC2wrru1DZ': 'wl1001',
+    '5ENufmcvZQBhHaCC6UUGAPVzpQk4XvMWsoUzQmLUP1Mpoq9Y': 'wl1002',
     '5Cz5CSNK4Xvp7CqqVcPgUgC44SLTRaXTan695XkygZwrHZyF': 'ws1602',
     '5CULQySsvYEMjWJxULdjTvLeKT9k8CyWzxTaTR8vFTr1ax1Q': 'ws1603',
     '5CwK1a1oACLitJHnFZgzZdUQNmaPYGnweQ5EwXoJW5DzfXsn': 'ws1604',
@@ -106,6 +108,44 @@ sn5_hotkeys = {
     '5GR2fn4rLPPs2rZnYbRez49r1aFZJYYW82WHS2G3W1WajkpX': 'ws504.hk10',
 }
 
+sn10_hotkeys = {
+    '5H15iEYNZmmx9fu5EWLPdsQchdZVtfQR1Pqhw4QN1RRhRS6R': 'wl1001.hk1',
+    '5EZc6VPLuYQvPeHbiqbhvUaL4FFVopuG7ArwK9DgiELW3Yxa': 'wl1001.hk2',
+    '5Haqw4PjxTgaHisRnrbN9fU5BuwYsgxzRu7HyVnt5RVHW9Ye': 'wl1001.hk3',
+    '5Gzdw62nr4GB4cUUtefTiqx4MWKQML8P1hCWoTYmrQbXynGf': 'wl1001.hk4',
+    '5DcREa32QqSGwzRiKLSLx2Po6ZPPYBw1fuGjc6nyRVkpuzrb': 'wl1001.hk5',
+
+    '5C5TsqqsBGEzU1QZAN9vuHt7XW7PV2Svi76bBnnapBBhkn4R': 'wl1001.hk6',
+    '5FeEamvJ4wcUrhZGtG9Qzq1KHXK4HSaSxDcy47mtcbMtThtT': 'wl1001.hk7',
+    '5G1E24LWDmxE59jo6x5V39NArhpLrGAEwV8XXXhwqShgaCTd': 'wl1001.hk8',
+    '5G9ZLoSNwqSQzTYneTo8wFV7Y9pdcgrqeCX71vnN2CQD52x9': 'wl1001.hk9',
+    '5EHRRtdXJ6fTK1gr21B25nSDSqXejbqC9ZeQ1dC6DeshZBir': 'wl1001.hk10',
+
+    '5HNYofTFAbozaUqrVaLjmiJi6RSbqv6ifQRP2fEaJdtY5iWF': 'wl1001.hk11',
+    '5D56VtNxm63aiZYovfahxQvctf3zkmhCSboXBETWpvGfJHDS': 'wl1001.hk12',
+    '5CfGFjMgoaW5aMLEZzVnWtmeLcVawsyRwK3mceKTXMXmHhnL': 'wl1001.hk13',
+    '5GHnr79MW8V6fmXXzE3UFT6QCpfYFphMgm456Vt5MmjJJdp2': 'wl1001.hk14',
+    '5EqkVAQEW576CQXhqMr2yKW1cZVkkqZCpzkm2AN8BNwcKXoF': 'wl1001.hk15',
+
+    '5FHChTrZ57pPACucarerqV3oiYPfjCSrUpcBf7WTZH6LxGqv': 'wl1001.hk16',
+    '5CGTfDmMZSidZyqNttVif6FjXLFrGa89nYph3g7AttwGLtgy': 'wl1001.hk17',
+    '5GWrJtKs7fhRo9AXg64vMCAKLXgBHbtyeiUAXibGxz9AWyFz': 'wl1001.hk18',
+    '5CwoccEa6BisxWy5idDDNUsCM6aUQqcgPZg89gNiQ7KKPagq': 'wl1001.hk19',
+    '5F1MLYpikoa2ukbEhDRhA1Km9vApibm1UBvWdcBommVugbpu': 'wl1001.hk20',
+
+    '5Fv5hJcGbQLYf2gn1pHYbQZ3QinrR9Hxy8LJ4rpvVfTBfd1q': 'wl1002.hk1',
+    '5F4J3aA4rHUtuPS2sZKBmrvtCFqNZapZBCfqsKAPrreAdDi9': 'wl1002.hk2',
+    '5CPqPimA142ABeCAJaJFXyhCfCF5MepH3k3yCaQhzSQomTp8': 'wl1002.hk3',
+    '5CodtVxrLK69DfWYU98CnZYvXunmfSnuhGERyTFFfLR9eFDA': 'wl1002.hk4',
+    '5DwUeRgiZ7faZYCCrj4Mt6quSnwrt1LUZ95jF1uBMYLWCBPB': 'wl1002.hk5',
+
+    '5CtXPVWPFfmFUPWfZ2TC2oyhzNNbR5YHXpaHYSdm8DpuCtwF': 'wl1002.hk6',
+    '5Cfn4UBXsg8fFu4BX468HUvfsRdNNtby9Vb52cqid1GHawTe': 'wl1002.hk7',
+    '5EnPzYXbw2prochL6b23JE1U5LSN4nMRNyMDXHBk6FWcYmyb': 'wl1002.hk8',
+    '5CAKzwLoo9S849WG8toszWiM3i1VCatfzw7PEa3bCHroQFbz': 'wl1002.hk9',
+    '5CArLkSNafefndFXMV2fXjgPF6BaLTVErDK9mW9sw4AqL6HE': 'wl1002.hk10',
+}
+
 sn16_hotkeys = {
     '5DZdizJopRXtQyosZqjp4giFGo4ozZqyyP2v7ZYjBzFpmWJD': 'wl0.hk1',
     '5EtYFsyd8tAwB71v7pELeH4VF4Gr9m3uJSGfsH9uR9tFpiKk': 'sn23.hk1',
@@ -147,3 +187,5 @@ sn31_hotkeys = {
 sn26_hotkeys = {
     '5DZdizJopRXtQyosZqjp4giFGo4ozZqyyP2v7ZYjBzFpmWJD': 'wl0.hk1',
 }
+
+
