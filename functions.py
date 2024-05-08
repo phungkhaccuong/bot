@@ -144,6 +144,7 @@ def send_miner_report(my_netuids, cold_keys, tele_chat_id, tele_report_token,
         "parse_mode": "HTML"
     }
 
-    requests.post(
+    result = requests.post(
         f'https://api.telegram.org/bot{tele_report_token}/sendMessage',
         json=data)
+    print(result)
