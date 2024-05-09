@@ -67,12 +67,12 @@ def direct_register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str):
             f'register successfully {netuid} {wallet_name} {hotkey} {subnet.burn}')
 
 
-def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float=11, max_burn=2, target_block=343):
+def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float=10.9, max_burn=1, target_block=175):
     global blocks_since_epoch
     subnet = subtensor.get_subnet_info(netuid=netuid)
     burn = subnet.burn.__float__()
     new_blocks_since_epoch = subnet.blocks_since_epoch
-    parameters = subtensor.get_subnet_hyperparameters(netuid)
+    #parameters = subtensor.get_subnet_hyperparameters(netuid)
 
     if blocks_since_epoch != new_blocks_since_epoch:
         bt.logging.info(f"Blocks_since_epoch: {new_blocks_since_epoch}. Burn: {burn}")
@@ -157,13 +157,10 @@ if __name__ == "__main__":
     wallet = bt.wallet(name=wallet_name, hotkey=hotkey)
     wallet.coldkey
 
-    if args.direct:
-        direct_register(subtensor, wallet, hotkey)
-    else:
-        while True:
-            try:
-                register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=343)
-                time.sleep(1)
-            except Exception as e:
-                bt.logging.error("[REGISTER] Error: ", e)
-                time.sleep(60)
+    while True:
+        try:
+            register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=175)
+            time.sleep(1)
+        except Exception as e:
+            bt.logging.error("[REGISTER] Error: ", e)
+            time.sleep(30)
