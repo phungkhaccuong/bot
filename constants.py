@@ -40,6 +40,7 @@ cold_keys = {
     '5CSs1LqkeYk8BujXiwrJ7RYM6zoK38wWwE116PGFnuYt6bpH': 'ws1628',
     '5CnzGZoXS4XrXByXeBzrhtcMeyZHU1uccoA7nxvcCnPLgvJa': 'ws1629',
     '5EAKQw2RQ6rkPRfZg75Vr8G266FkyMQ87y8P1NJyfk8sjK5C': 'ws1630',
+    '5G7CjusXhub9DkeptgHMz42S5kJ9tMn96Vac6bFyGeroQQpU': 'ws16_b1',
     '5CwSWFQX9KRxmQEZmUfFksZPJwA6JfwNjGJudb4EVKYqrjAV': 'wl2501'
 }
 
@@ -179,6 +180,7 @@ sn16_hotkeys = {
     '5ERsB32XkKherM3yKq5Pg4h2qGsQKUNqcwYVWVDhqYDRybPB': 'sn1628.hk1',
     '5HMqKHG87s8jBa1q5kbRBR8bu18tErz2kRrEA4k4mUqAJkvD': 'sn1629.hk1',
     '5H6TbLF6jpmx5M96j8bBcwwG76on7fAjqwEyA1wmb4LmvV65': 'sn1630.hk1',
+    '5DPm3s5BiYjPDHpEdjPaYrdQdhxwYszoo8jgi7vAKnwD8Cnh': 'sn16_b1.hk1'
 }
 
 sn25_hotkeys = {
