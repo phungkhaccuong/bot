@@ -67,7 +67,7 @@ def direct_register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str):
             f'register successfully {netuid} {wallet_name} {hotkey} {subnet.burn}')
 
 
-def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float=10.9, max_burn=1, target_block=175):
+def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float=10.7, max_burn=1, target_block=174):
     global blocks_since_epoch
     subnet = subtensor.get_subnet_info(netuid=netuid)
     burn = subnet.burn.__float__()
