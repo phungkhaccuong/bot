@@ -36,8 +36,8 @@ import requests
 bt.logging.set_debug(False)
 load_dotenv()
 
-tele_bot_token = os.getenv("TELE_REPORT_TOKEN")
-tele_chat_id = os.getenv("TELE_CHAT_ID")
+tele_bot_token = "6408369939:AAHKfnIxyihyXoJ3p1WNN2cgaSD4ielBJtw"
+tele_chat_id = "-4151737386"
 blocks_since_epoch = 0
 
 
@@ -67,7 +67,7 @@ def direct_register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str):
             f'register successfully {netuid} {wallet_name} {hotkey} {subnet.burn}')
 
 
-def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float=10.6, max_burn=1, target_block=174):
+def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float=10.6, max_burn=1, target_block=173):
     global blocks_since_epoch
     subnet = subtensor.get_subnet_info(netuid=netuid)
     burn = subnet.burn.__float__()
@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
     while True:
         try:
-            register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=174)
+            register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=173)
             time.sleep(1)
         except Exception as e:
             bt.logging.error("[REGISTER] Error: ", e)
