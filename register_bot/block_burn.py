@@ -9,17 +9,17 @@ bt.logging.set_debug(False)
 load_dotenv()
 blocks_since_epoch = 0
 old_burn = -1
-file_name = 'target_block_burn.json'
+path_file_name = 'register_bot/target_block_burn.json'
 
 
 def load_target_block_burn_of_all_subnet():
-    with open(file_name, 'r') as json_file:
+    with open(path_file_name, 'r') as json_file:
         target_block_burn = json.load(json_file)
     return target_block_burn
 
 
 def save_target_block_burn_of_all_subnet(data):
-    with open(file_name, 'w') as json_file:
+    with open(path_file_name, 'w') as json_file:
         json.dump(data, json_file)
 
 
