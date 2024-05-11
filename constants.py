@@ -41,6 +41,8 @@ cold_keys = {
     '5CnzGZoXS4XrXByXeBzrhtcMeyZHU1uccoA7nxvcCnPLgvJa': 'ws1629',
     '5EAKQw2RQ6rkPRfZg75Vr8G266FkyMQ87y8P1NJyfk8sjK5C': 'ws1630',
     '5G7CjusXhub9DkeptgHMz42S5kJ9tMn96Vac6bFyGeroQQpU': 'ws16_b1',
+    '5HNJ3rW5ceMdZ2uNrvCGUnh3QHKoNgWMYbusmav68bBy2Qrm': 'ws16_b2',
+    '5FGvM8AksDSTPwXdpUzVm53E4DkddNTiwi2N2TDg3JWGD6Po': 'ws16_b3',
     '5CwSWFQX9KRxmQEZmUfFksZPJwA6JfwNjGJudb4EVKYqrjAV': 'wl2501'
 }
 
@@ -180,7 +182,9 @@ sn16_hotkeys = {
     '5ERsB32XkKherM3yKq5Pg4h2qGsQKUNqcwYVWVDhqYDRybPB': 'sn1628.hk1',
     '5HMqKHG87s8jBa1q5kbRBR8bu18tErz2kRrEA4k4mUqAJkvD': 'sn1629.hk1',
     '5H6TbLF6jpmx5M96j8bBcwwG76on7fAjqwEyA1wmb4LmvV65': 'sn1630.hk1',
-    '5DPm3s5BiYjPDHpEdjPaYrdQdhxwYszoo8jgi7vAKnwD8Cnh': 'sn16_b1.hk1'
+    '5DPm3s5BiYjPDHpEdjPaYrdQdhxwYszoo8jgi7vAKnwD8Cnh': 'sn16_b1.hk1',
+    '5EeoyHehHdss8qgDQ4wJqnruqrXgAsxUKrayYidYZqGgxR5e': 'sn16_b2.hk1',
+    '5FRrGKNqN7dbnLR5w3EaZKdhWq11yDaFLF8Pg17SQb2wFoRw': 'sn16_b3.hk1',
 }
 
 sn25_hotkeys = {
