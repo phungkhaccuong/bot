@@ -49,16 +49,9 @@ def update_target_block_burn(subtensor: bt.subtensor, netuid):
     subnet = subtensor.get_subnet_info(netuid=netuid)
     burn = subnet.burn.__float__()
     new_blocks_since_epoch = subnet.blocks_since_epoch
-    bt.logging.info(f"-----------------------------------blocks_since_epoch: {blocks_since_epoch}. new_blocks_since_epoch: {new_blocks_since_epoch}")
-
-    if old_burn == -1:
-        old_burn = burn
 
     if blocks_since_epoch != new_blocks_since_epoch:
         bt.logging.info(f"Subnet:{netuid}. Blocks_since_epoch: {new_blocks_since_epoch}. Burn: {burn}")
-        if old_burn != burn:
-            update_block_burn_of_subnet(netuid, new_blocks_since_epoch)
-            old_burn = burn
 
     blocks_since_epoch = new_blocks_since_epoch
 
