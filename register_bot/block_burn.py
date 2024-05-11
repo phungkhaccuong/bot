@@ -35,7 +35,6 @@ def find_target_block_burn(new_blocks_since_epoch):
 def update_block_burn_of_subnet(netuid, new_blocks_since_epoch):
     key = f"SN_{netuid}"
     target_block_burns = load_target_block_burn_of_all_subnet()
-    bt.logging.info(f"target_block_burns::{target_block_burns}")
     if key in target_block_burns:
         target_block_burn = find_target_block_burn(new_blocks_since_epoch)
         target_block_burns[key] = target_block_burn
@@ -56,12 +55,9 @@ def update_target_block_burn(subtensor: bt.subtensor, netuid):
 
     if blocks_since_epoch != new_blocks_since_epoch:
         bt.logging.info(f"Subnet:{netuid}. Blocks_since_epoch: {new_blocks_since_epoch}. Burn: {burn}")
-        # if old_burn != burn:
-        #     update_block_burn_of_subnet(netuid, new_blocks_since_epoch)
-        #     old_burn = burn
-
-        update_block_burn_of_subnet(netuid, new_blocks_since_epoch)
-        old_burn = burn
+        if old_burn != burn:
+            update_block_burn_of_subnet(netuid, new_blocks_since_epoch)
+            old_burn = burn
 
     blocks_since_epoch = new_blocks_since_epoch
 
@@ -82,7 +78,7 @@ if __name__ == "__main__":
     while True:
         try:
             update_target_block_burn(subtensor, netuid)
-            time.sleep(3)
+            time.sleep(2)
         except Exception as e:
             bt.logging.error("[REGISTER] Error: ", e)
             time.sleep(30)
