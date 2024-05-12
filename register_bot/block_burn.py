@@ -12,6 +12,10 @@ old_burn = -1
 path_file_name = 'register_bot/target_block_burn.json'
 
 
+def create_key_in_json_file(netuid):
+    return f"SN_{netuid}"
+
+
 def load_target_block_burn_of_all_subnet():
     with open(path_file_name, 'r') as json_file:
         target_block_burn = json.load(json_file)
@@ -33,7 +37,7 @@ def find_target_block_burn(new_blocks_since_epoch):
 
 
 def update_block_burn_of_subnet(netuid, new_blocks_since_epoch):
-    key = f"SN_{netuid}"
+    key = create_key_in_json_file(netuid)
     target_block_burns = load_target_block_burn_of_all_subnet()
     if key in target_block_burns:
         target_block_burn = find_target_block_burn(new_blocks_since_epoch)

@@ -1,8 +1,12 @@
 import argparse
+import json
 import time
 import os
 
 import logging
+
+from register_bot.block_burn import path_file_name, create_key_in_json_file
+
 
 def setup_logger():
     # Create logger
@@ -67,12 +71,21 @@ def direct_register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str):
             f'register successfully {netuid} {wallet_name} {hotkey} {subnet.burn}')
 
 
-def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float=10.6, max_burn=1, target_block=227):
+def get_target_block_burn(netuid):
+    with open(path_file_name, 'r') as json_file:
+        target_block_burn = json.load(json_file)
+
+    key = create_key_in_json_file(netuid)
+    return target_block_burn[key]
+
+
+def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float = 11, max_burn=3,
+             target_block=227):
     global blocks_since_epoch
     subnet = subtensor.get_subnet_info(netuid=netuid)
     burn = subnet.burn.__float__()
     new_blocks_since_epoch = subnet.blocks_since_epoch
-    #parameters = subtensor.get_subnet_hyperparameters(netuid)
+    # parameters = subtensor.get_subnet_hyperparameters(netuid)
 
     if blocks_since_epoch != new_blocks_since_epoch:
         bt.logging.info(f"Blocks_since_epoch: {new_blocks_since_epoch}. Burn: {burn}")
@@ -132,16 +145,7 @@ if __name__ == "__main__":
         help="seconds to wait until actual burn",
         default=10
     )
-    parser.add_argument(
-        "--direct",
-        action=argparse.BooleanOptionalAction
-    )
-    parser.add_argument(
-        "--target_block",
-        type=int,
-        help="Block number just before registration",
-        default=343
-    )
+
     args = parser.parse_args()
 
     netuid = args.netuid
@@ -150,7 +154,6 @@ if __name__ == "__main__":
     max_burn = args.max_burn
     network = args.network
     wait_seconds = args.wait_seconds
-    target_block =args.target_block
 
     subtensor = bt.subtensor(network=network)
 
@@ -159,6 +162,8 @@ if __name__ == "__main__":
 
     while True:
         try:
+            target_block = get_target_block_burn(netuid)
+            bt.logging.info(f"subnet: {netuid}. wait_seconds:{wait_seconds}. target_block: {target_block}")
             register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=227)
             time.sleep(1)
         except Exception as e:
