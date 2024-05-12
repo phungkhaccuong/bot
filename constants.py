@@ -40,6 +40,12 @@ cold_keys = {
     '5CSs1LqkeYk8BujXiwrJ7RYM6zoK38wWwE116PGFnuYt6bpH': 'ws1628',
     '5CnzGZoXS4XrXByXeBzrhtcMeyZHU1uccoA7nxvcCnPLgvJa': 'ws1629',
     '5EAKQw2RQ6rkPRfZg75Vr8G266FkyMQ87y8P1NJyfk8sjK5C': 'ws1630',
+    '5G7CjusXhub9DkeptgHMz42S5kJ9tMn96Vac6bFyGeroQQpU': 'ws16_b1',
+    '5HNJ3rW5ceMdZ2uNrvCGUnh3QHKoNgWMYbusmav68bBy2Qrm': 'ws16_b2',
+    '5FGvM8AksDSTPwXdpUzVm53E4DkddNTiwi2N2TDg3JWGD6Po': 'ws16_b3',
+    '5DD81Rs4HGLfpjz4Nh5ALdW3GD2iD2TTM3rJUmFPSTAfpcMp': 'ws16_b4',
+    '5GsjZoK7rsqJUKXiEo3xZCSJiCSa7Qt3mSnWLVwMcMwzRcV6': 'ws16_b5',
+    '5DRPZdsfGqqG9MU7qY5pQERHoEoqjuM4KokmbWnZyCCBdeko': 'ws16_b6',
     '5CwSWFQX9KRxmQEZmUfFksZPJwA6JfwNjGJudb4EVKYqrjAV': 'wl2501'
 }
 
@@ -179,6 +185,12 @@ sn16_hotkeys = {
     '5ERsB32XkKherM3yKq5Pg4h2qGsQKUNqcwYVWVDhqYDRybPB': 'sn1628.hk1',
     '5HMqKHG87s8jBa1q5kbRBR8bu18tErz2kRrEA4k4mUqAJkvD': 'sn1629.hk1',
     '5H6TbLF6jpmx5M96j8bBcwwG76on7fAjqwEyA1wmb4LmvV65': 'sn1630.hk1',
+    '5DPm3s5BiYjPDHpEdjPaYrdQdhxwYszoo8jgi7vAKnwD8Cnh': 'sn16_b1.hk1',
+    '5EeoyHehHdss8qgDQ4wJqnruqrXgAsxUKrayYidYZqGgxR5e': 'sn16_b2.hk1',
+    '5FRrGKNqN7dbnLR5w3EaZKdhWq11yDaFLF8Pg17SQb2wFoRw': 'sn16_b3.hk1',
+    '5FTUANALV3hT8RnKsd1DEuebNLXb8rrF8LZFHKFfTaLxi9Ys': 'sn16_b4.hk1',
+    '5DfF8CSUak3a7mYH1XYaYCLMM4rYxg1Q4UURdVMBwef1AfAR': 'sn16_b5.hk1',
+    '5FC5kSsGSs52vn8vEEJ8GUbtQsxLHSR4QVggZURhgayupYT3': 'sn16_b6.hk1',
 }
 
 sn25_hotkeys = {
