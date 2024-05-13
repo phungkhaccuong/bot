@@ -48,6 +48,8 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
 
     # Group by subnet_id and aggregate the other columns
     df_agg = df.groupby('subnet_id').agg({'free': 'sum', 'staked': 'sum', 'daily_reward': 'sum'}).reset_index()
+    df_agg['total'] = df_agg['free'] + df_agg['staked']
+    df_agg = df_agg.sort_values(by='subnet_id')
     print(f"df_agg:::{df_agg}")
 
     # distinct_subnet_ids = list(set(subnet_ids))
