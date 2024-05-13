@@ -36,22 +36,25 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
     print(f"daily_rewards::{daily_rewards}")
 
     balances = [
-        (subnet_id, coldkey, free, staked, daily_reward)
-        for subnet_id, coldkey, free, staked, daily_reward in sorted(
-            zip(subnet_ids, coldkeys, free_balances, staked_balances, daily_rewards)
+        (subnet_id, free, staked, daily_reward)
+        for subnet_id, free, staked, daily_reward in sorted(
+            zip(subnet_ids, free_balances, staked_balances, daily_rewards)
         )
     ]
 
-    print(f"balancessssssssssssssssss::{balances}")
+    print(f"balances:::{balances}")
 
-
-    total_free_balance = sum(free_balances)
-    total_staked_balance = sum(staked_balances)
-    total_daily_reward = sum(daily_rewards)
-
-    has_change = False
-    # for name, (coldkey, free, staked, daily_reward) in balances.items():
-    #     total = free + staked
+    # distinct_subnet_ids = list(set(subnet_ids))
+    # total_free_balance = sum(free_balances)
+    # total_staked_balance = sum(staked_balances)
+    # total_daily_reward = sum(daily_rewards)
+    #
+    # has_change = False
+    # total_free = 0
+    # total_stake = 0
+    # total_total = 0
+    # total_daily_reward = 0
+    # for net_id in distinct_subnet_ids:
     #
     #     arrow = ''
     #     if coldkey in total_map:
