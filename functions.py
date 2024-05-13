@@ -14,7 +14,7 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
     wallet_values = list(cold_keys.values())
     print(f"wallet_names::{wallet_values}")
 
-    subnet_ids = [str(t[1]) for t in wallet_values]
+    subnet_ids = [t[1] for t in wallet_values]
 
     wallet_names = [t[0] for t in wallet_values]
 
@@ -48,60 +48,55 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
     df_agg = df.groupby('subnet_id').agg({'free': 'sum', 'staked': 'sum', 'daily_reward': 'sum'}).reset_index()
     df_agg.insert(df_agg.columns.get_loc('staked') + 1, 'total', df_agg['free'] + df_agg['staked'])
     df_agg = df_agg.sort_values(by='subnet_id')
-    print(f"df_agg:::{df_agg}")
 
-    # distinct_subnet_ids = list(set(subnet_ids))
-    # total_free_balance = sum(free_balances)
-    # total_staked_balance = sum(staked_balances)
-    # total_daily_reward = sum(daily_rewards)
-    #
-    # has_change = False
-    # total_free = 0
-    # total_stake = 0
-    # total_total = 0
-    # total_daily_reward = 0
-    # for net_id in distinct_subnet_ids:
-    #
-    #     arrow = ''
-    #     if coldkey in total_map:
-    #         if total_map[coldkey] > total:
-    #             arrow = '↓'
-    #             has_change = True
-    #         elif total_map[coldkey] < total:
-    #             arrow = '↑'
-    #             has_change = True
-    #     else:
-    #         has_change = True
-    #
-    #     table.add_row([
-    #         name,
-    #         '{0:.3f}'.format(free.__float__()),
-    #         '{0:.3f}'.format(staked.__float__()),
-    #         '{0:.3f}'.format(total.__float__()) + arrow,
-    #         '{0:.3f}'.format(daily_reward.__float__()),
-    #     ])
-    #
-    #     total_map[coldkey] = total
-    # table.add_row(["-", "-", "-", "-", "-"])
-    # table.add_row([
-    #     "All",
-    #     '{0:.3f}'.format(total_free_balance.__float__()),
-    #     '{0:.3f}'.format(total_staked_balance.__float__()),
-    #     '{0:.3f}'.format((total_free_balance +
-    #                       total_staked_balance).__float__()),
-    #     '{0:.3f}'.format(total_daily_reward.__float__()),
-    # ])
-    #
-    # if has_change:
-    #     data = {
-    #         "chat_id": tele_chat_id,
-    #         "text": f'Balance<pre>{table.get_string()}</pre>',
-    #         "parse_mode": "HTML"
-    #     }
-    #
-    #     requests.post(
-    #         f'https://api.telegram.org/bot{tele_report_token}/sendMessage',
-    #         json=data)
+    total_free_balance = sum(free_balances)
+    total_staked_balance = sum(staked_balances)
+    total_daily_reward = sum(daily_rewards)
+
+    has_change = False
+    for index, row in df_agg.iterrows():
+        subnet_id = row['subnet_id']
+
+        arrow = ''
+        if subnet_id in total_map:
+            if total_map[subnet_id] > row['total']:
+                arrow = '↓'
+                has_change = True
+            elif total_map[subnet_id] < row['total']:
+                arrow = '↑'
+                has_change = True
+        else:
+            has_change = True
+
+        table.add_row([
+            f'SN_{subnet_id}',
+            '{0:.3f}'.format(row['free'].__float__()),
+            '{0:.3f}'.format(row['staked'].__float__()),
+            '{0:.3f}'.format(row['total'].__float__()) + arrow,
+            '{0:.3f}'.format(row['daily_reward'].__float__()),
+        ])
+
+        total_map[subnet_id] = row['total']
+    table.add_row(["-", "-", "-", "-", "-"])
+    table.add_row([
+        "All",
+        '{0:.3f}'.format(total_free_balance.__float__()),
+        '{0:.3f}'.format(total_staked_balance.__float__()),
+        '{0:.3f}'.format((total_free_balance + total_staked_balance).__float__()),
+        '{0:.3f}'.format(total_daily_reward.__float__()),
+    ])
+
+    #if has_change:
+    if has_change:
+        data = {
+            "chat_id": tele_chat_id,
+            "text": f'Balance<pre>{table.get_string()}</pre>',
+            "parse_mode": "HTML"
+        }
+
+        requests.post(
+            f'https://api.telegram.org/bot{tele_report_token}/sendMessage',
+            json=data)
 
 
 def send_balance_report_v1(subtensor, cold_keys, total_map, tele_chat_id,
