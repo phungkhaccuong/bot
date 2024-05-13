@@ -14,7 +14,7 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
     wallet_values = list(cold_keys.values())
     print(f"wallet_names::{wallet_values}")
 
-    subnet_ids = [t[1] for t in wallet_values]
+    subnet_ids = [str(t[1]) for t in wallet_values]
 
     wallet_names = [t[0] for t in wallet_values]
 
@@ -43,6 +43,12 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
     ]
 
     print(f"balances:::{balances}")
+
+    df = pd.DataFrame(balances, columns=['subnet_id', 'free', 'staked', 'daily_reward'])
+
+    # Group by subnet_id and aggregate the other columns
+    df_agg = df.groupby('subnet_id').agg({'free': 'sum', 'staked': 'sum', 'daily_reward': 'sum'}).reset_index()
+    print(f"df_agg:::{df_agg}")
 
     # distinct_subnet_ids = list(set(subnet_ids))
     # total_free_balance = sum(free_balances)
