@@ -11,8 +11,12 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
 
     coldkeys = list(cold_keys.keys())
     print(f"coldkey::{coldkeys}")
-    wallet_names = list(cold_keys.values())
-    print(f"wallet_names::{wallet_names}")
+    wallet_values = list(cold_keys.values())
+    print(f"wallet_names::{wallet_values}")
+
+    subnet_ids = [t[1] for t in wallet_values]
+
+    wallet_names = [t[0] for t in wallet_values]
 
     free_balances = [
         subtensor.get_balance(coldkeys[i]) for i in range(len(coldkeys))
@@ -32,9 +36,9 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
     print(f"daily_rewards::{daily_rewards}")
 
     balances = {
-        name: (coldkey, free, staked, daily_reward)
-        for name, coldkey, free, staked, daily_reward in sorted(
-            zip(wallet_names, coldkeys, free_balances, staked_balances, daily_rewards)
+        name: (subnet_id, coldkey, free, staked, daily_reward)
+        for name, subnet_id, coldkey, free, staked, daily_reward in sorted(
+            zip(wallet_names, subnet_ids, coldkeys, free_balances, staked_balances, daily_rewards)
         )
     }
 
