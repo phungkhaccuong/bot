@@ -1,6 +1,6 @@
 # Description: This file contains all the constants used in the project.
 cold_keys = {
-    '5H73vxEPYcfmFeWtSbSGtpenzvuYkE6jEohR3kb7VQdfNwtx': ('wl0', 1),
+    '5H73vxEPYcfmFeWtSbSGtpenzvuYkE6jEohR3kb7VQdfNwtx': ('wl0', 0),
     '5GTJ1jzQocwMmtRyU21LN1CpVoSjcuvo6SpYc2TcDdFJJMt6': ('sn23', 23),
     '5HdG2X4Xrbiw5C752yzqraVmSZhTWptkVMCZRwo8gMzppFPi': ('ws2801', 28),
     '5D7nqA4MwzHHksK8FHwiB4Z4WBzusKDUcBCWWZ8rQbqj2oym': ('ws2802', 28),

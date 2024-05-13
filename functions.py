@@ -10,30 +10,20 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
     table.field_names = ["NAME", "FREE", "STAKED", "TOTAL", "DAILY REWARDS"]
 
     coldkeys = list(cold_keys.keys())
-    print(f"coldkey::{coldkeys}")
     wallet_values = list(cold_keys.values())
-    print(f"wallet_names::{wallet_values}")
 
     subnet_ids = [t[1] for t in wallet_values]
-
-    wallet_names = [t[0] for t in wallet_values]
 
     free_balances = [
         subtensor.get_balance(coldkeys[i]) for i in range(len(coldkeys))
     ]
-
-    print(f"free_balances::{free_balances}")
 
     staked_balances = [
         subtensor.get_total_stake_for_coldkey(coldkeys[i])
         for i in range(len(coldkeys))
     ]
 
-    print(f"staked_balances::{staked_balances}")
-
     daily_rewards = get_reward_of_cold_keys(cold_keys)
-
-    print(f"daily_rewards::{daily_rewards}")
 
     balances = [
         (subnet_id, free, staked, daily_reward)
@@ -41,8 +31,6 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
             zip(subnet_ids, free_balances, staked_balances, daily_rewards)
         )
     ]
-
-    print(f"balances:::{balances}")
 
     df = pd.DataFrame(balances, columns=['subnet_id', 'free', 'staked', 'daily_reward'])
     df_agg = df.groupby('subnet_id').agg({'free': 'sum', 'staked': 'sum', 'daily_reward': 'sum'}).reset_index()
@@ -69,7 +57,7 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
             has_change = True
 
         table.add_row([
-            f'SN_{subnet_id}',
+            'ROOT' if subnet_id == 0 else f'SN_{subnet_id}',
             '{0:.3f}'.format(row['free'].__float__()),
             '{0:.3f}'.format(row['staked'].__float__()),
             '{0:.3f}'.format(row['total'].__float__()) + arrow,
@@ -86,7 +74,6 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
         '{0:.3f}'.format(total_daily_reward.__float__()),
     ])
 
-    #if has_change:
     if has_change:
         data = {
             "chat_id": tele_chat_id,
@@ -100,7 +87,7 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
 
 
 def send_balance_report_v1(subtensor, cold_keys, total_map, tele_chat_id,
-                        tele_report_token):
+                           tele_report_token):
     table = PrettyTable()
     table.field_names = ["NAME", "FREE", "STAKED", "TOTAL", "DAILY REWARDS"]
 
@@ -258,7 +245,7 @@ def get_subnet_reward(netuid, cold_keys, rewards, reward_map, hotkeys):
 
 
 def send_miner_report(my_netuids, cold_keys, tele_chat_id, tele_report_token,
-                       reward_map, hotkeys):
+                      reward_map, hotkeys):
     text = ''
     rewards = []
     need_send = False
@@ -285,6 +272,7 @@ def send_miner_report(my_netuids, cold_keys, tele_chat_id, tele_report_token,
         json=data)
     print(result)
 
+
 def get_keys_rank_under_50(my_netuids, cold_keys, tele_chat_id, tele_report_token, reward_map, hotkeys):
     text = ''
     rewards = []
@@ -294,7 +282,6 @@ def get_keys_rank_under_50(my_netuids, cold_keys, tele_chat_id, tele_report_toke
         need_send = True
     if string != '':
         text += f'\n Rank keys under 50 <pre>{string}</pre>'
-
 
     if not need_send:
         return
@@ -309,6 +296,7 @@ def get_keys_rank_under_50(my_netuids, cold_keys, tele_chat_id, tele_report_toke
         f'https://api.telegram.org/bot{tele_report_token}/sendMessage',
         json=data)
     print(result)
+
 
 def get_subnet_reward_v1(netuids, cold_keys, rewards, reward_map, hotkeys):
     has_change = True
