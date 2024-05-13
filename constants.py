@@ -11,6 +11,7 @@ cold_keys = {
     '5FcKjwtX3qrNL8toxTqfyKtj6jNbUYYHrFWwBghhxsZ2iFmX': ('ws504', 5),
     '5EAWhStQFp4F5AEG43eokdJtE2ZKwtLuFzcoRdXC2wrru1DZ': ('wl1001', 10),
     '5ENufmcvZQBhHaCC6UUGAPVzpQk4XvMWsoUzQmLUP1Mpoq9Y': ('wl1002', 10),
+    '5EUc6rY7fup2aH94bCCCuJa41gbRh7C4SvLVPHvVNrcmtB8C': ('wl1003', 10),
     '5Cz5CSNK4Xvp7CqqVcPgUgC44SLTRaXTan695XkygZwrHZyF': ('ws1602', 16),
     '5CULQySsvYEMjWJxULdjTvLeKT9k8CyWzxTaTR8vFTr1ax1Q': ('ws1603', 16),
     '5EPCHoZHYgLQ5RGj1HFkoUf6AsPFqiaogcYPXSUoZuDtQash': ('ws1605', 16),
@@ -160,6 +161,30 @@ sn10_hotkeys = {
     '5EnPzYXbw2prochL6b23JE1U5LSN4nMRNyMDXHBk6FWcYmyb': 'wl1002.hk8',
     '5CAKzwLoo9S849WG8toszWiM3i1VCatfzw7PEa3bCHroQFbz': 'wl1002.hk9',
     '5CArLkSNafefndFXMV2fXjgPF6BaLTVErDK9mW9sw4AqL6HE': 'wl1002.hk10',
+
+    '5FxXmRvjTiYnNvEtbUxdbAAUPgTtHXtZonJnqhjAeRXNQnna': 'wl1002.hk11',
+    '5EXDjZ4e6qPSZHDzuHFP8Ak4SF4HPyE7NdyyfNvy1vE292nS': 'wl1002.hk12',
+    '5CQHFSjHizoqKfjZ3WfMcm5qLg8T3SzzmcckUNnUisTatvwL': 'wl1002.hk13',
+    '5CMG14sAUzz5YHFBRdKdkqyz6qjCMLKLm2YzgxAaGi5LPRaH': 'wl1002.hk14',
+    '5GMrKDKxCMfKFkkRTYyXFTYhrLUa3Sho8a2ahFhs2H1c1M5c': 'wl1002.hk15',
+
+    '5D59WsYu2JZNY41BfhyDC11sE3WdBG8FkNh7Z4Zn626248Et': 'wl1002.hk16',
+    '5F4WYvcHTdBqh6eA47LddEVkMWpDjEH8oaKLjhrCkbJkqVFE': 'wl1002.hk17',
+    '5CiTSgNWCgdXUoqcwJ7HfVEucDkU5wFSyggSv1AtVjCD2W3K': 'wl1002.hk18',
+    '5FCMu45E19z2NpjjagmkdHbfTgMKSMxwYNNHLKnsuSuWViwX': 'wl1002.hk19',
+    '5DUaynCzDsgNUiwR4gzyu3vtAYcswnixDYahARDSFWoc7shp': 'wl1002.hk20',
+
+    '5Da1N2gnoK8ZF5pG61PWjDxGLibjeWFyimdofkeouuyU8AeF': 'wl1003.hk1',
+    '5GKmD8zsuk48opckE7Y1WA7Anic2WCKjanmkMTKqscZcE7EB': 'wl1003.hk2',
+    '5DoMgRmbPgMotmwpuAcWKW4KM5zEY3HnKU74h3KCZbbio6TD': 'wl1003.hk3',
+    '5EXKVb7oRZXUeWNPiH2BGib5h7SiHNeQriGip4HdYhaa9JFN': 'wl1003.hk4',
+    '5CUwFS7v9P7bGmso4fBsqAcpsWAzWh8wJKJAnNsUBzrKGB4g': 'wl1003.hk5',
+
+    '5CLiL89DXB2je1FjyxY1NtgmaybsouJ4DYt5RxbVvbnLjUmu': 'wl1003.hk6',
+    '5DZwKGWueBRrC3CzZxxK4wJpkCTbGPDu27cWXpJzV3kxC4BJ': 'wl1003.hk7',
+    '5GUMc5H3rdUFRo6TL5yFXkBiz8zvxdXU6oZyPM7C95mowUJK': 'wl1003.hk8',
+    '5EnB1VM8w9zuKKH4fWqPFhQLnfx6KwdCeD1GZEFwUD1azz5P': 'wl1003.hk9',
+    '5EUoKKAiQFTCczo5wsXu4p3izoKaLsygVBscQVKiX2vG4CV6': 'wl1003.hk10',
 }
 
 sn16_hotkeys = {
