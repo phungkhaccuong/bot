@@ -10,6 +10,93 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
     table.field_names = ["NAME", "FREE", "STAKED", "TOTAL", "DAILY REWARDS"]
 
     coldkeys = list(cold_keys.keys())
+    print(f"coldkey::{coldkeys}")
+    wallet_names = list(cold_keys.values())
+    print(f"wallet_names::{wallet_names}")
+
+    free_balances = [
+        subtensor.get_balance(coldkeys[i]) for i in range(len(coldkeys))
+    ]
+
+    print(f"free_balances::{free_balances}")
+
+    staked_balances = [
+        subtensor.get_total_stake_for_coldkey(coldkeys[i])
+        for i in range(len(coldkeys))
+    ]
+
+    print(f"staked_balances::{staked_balances}")
+
+    daily_rewards = get_reward_of_cold_keys(cold_keys)
+
+    print(f"daily_rewards::{daily_rewards}")
+
+    balances = {
+        name: (coldkey, free, staked, daily_reward)
+        for name, coldkey, free, staked, daily_reward in sorted(
+            zip(wallet_names, coldkeys, free_balances, staked_balances, daily_rewards)
+        )
+    }
+
+    print(f"balancessssssssssssssssss::{balances}")
+
+
+    total_free_balance = sum(free_balances)
+    total_staked_balance = sum(staked_balances)
+    total_daily_reward = sum(daily_rewards)
+
+    has_change = False
+    # for name, (coldkey, free, staked, daily_reward) in balances.items():
+    #     total = free + staked
+    #
+    #     arrow = ''
+    #     if coldkey in total_map:
+    #         if total_map[coldkey] > total:
+    #             arrow = '↓'
+    #             has_change = True
+    #         elif total_map[coldkey] < total:
+    #             arrow = '↑'
+    #             has_change = True
+    #     else:
+    #         has_change = True
+    #
+    #     table.add_row([
+    #         name,
+    #         '{0:.3f}'.format(free.__float__()),
+    #         '{0:.3f}'.format(staked.__float__()),
+    #         '{0:.3f}'.format(total.__float__()) + arrow,
+    #         '{0:.3f}'.format(daily_reward.__float__()),
+    #     ])
+    #
+    #     total_map[coldkey] = total
+    # table.add_row(["-", "-", "-", "-", "-"])
+    # table.add_row([
+    #     "All",
+    #     '{0:.3f}'.format(total_free_balance.__float__()),
+    #     '{0:.3f}'.format(total_staked_balance.__float__()),
+    #     '{0:.3f}'.format((total_free_balance +
+    #                       total_staked_balance).__float__()),
+    #     '{0:.3f}'.format(total_daily_reward.__float__()),
+    # ])
+    #
+    # if has_change:
+    #     data = {
+    #         "chat_id": tele_chat_id,
+    #         "text": f'Balance<pre>{table.get_string()}</pre>',
+    #         "parse_mode": "HTML"
+    #     }
+    #
+    #     requests.post(
+    #         f'https://api.telegram.org/bot{tele_report_token}/sendMessage',
+    #         json=data)
+
+
+def send_balance_report_v1(subtensor, cold_keys, total_map, tele_chat_id,
+                        tele_report_token):
+    table = PrettyTable()
+    table.field_names = ["NAME", "FREE", "STAKED", "TOTAL", "DAILY REWARDS"]
+
+    coldkeys = list(cold_keys.keys())
     wallet_names = list(cold_keys.values())
 
     free_balances = [
@@ -78,6 +165,7 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
         requests.post(
             f'https://api.telegram.org/bot{tele_report_token}/sendMessage',
             json=data)
+
 
 def get_subnet_data(netuid):
     url = 'https://taostats.io/wp-admin/admin-ajax.php'

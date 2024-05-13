@@ -12,8 +12,9 @@ my_netuids = [10, 23, 28, 16, 25]
 
 # tele_chat_id = os.getenv("TELE_CHAT_ID_V1")
 # tele_report_token = os.getenv("TELE_REPORT_TOKEN_V1")
-tele_chat_id = '-1002092781171'
-tele_report_token = '7117929777:AAED-5iaE_-SQWkg7Jouo31xQJeNnF_f8cg'
+tele_chat_id = '1205550456'
+tele_report_token = '6768286803:AAEOT-8Auf2FQWlApf5pyrl81G_g0x90gwU'
+
 reward_map = {}
 
 def main():
