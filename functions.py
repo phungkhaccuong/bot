@@ -36,9 +36,9 @@ def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
     print(f"daily_rewards::{daily_rewards}")
 
     balances = {
-        name: (subnet_id, coldkey, free, staked, daily_reward)
-        for name, subnet_id, coldkey, free, staked, daily_reward in sorted(
-            zip(wallet_names, subnet_ids, coldkeys, free_balances, staked_balances, daily_rewards)
+        str(subnet_id): (subnet_id, coldkey, free, staked, daily_reward)
+        for subnet_id, coldkey, free, staked, daily_reward in sorted(
+            zip(subnet_ids, coldkeys, free_balances, staked_balances, daily_rewards)
         )
     }
 
