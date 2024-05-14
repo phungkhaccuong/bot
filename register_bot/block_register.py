@@ -171,6 +171,7 @@ if __name__ == "__main__":
             time.sleep(1)
             end_time = datetime.now()
             elapsed_time = (end_time - start_time).total_seconds()
+            print(f'elapsed_time:{elapsed_time}')
         except Exception as e:
             bt.logging.error("[REGISTER] Error: ", e)
             time.sleep(30)
