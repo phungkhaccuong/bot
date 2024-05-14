@@ -4,8 +4,13 @@ import time
 import os
 
 import logging
+from datetime import datetime
 
-from register_bot.block_burn import path_file_name, create_key_in_json_file
+path_file_name = 'register_bot/target_block_burn.json'
+
+
+def create_key_in_json_file(netuid):
+    return f"SN_{netuid}"
 
 
 def setup_logger():
@@ -79,8 +84,7 @@ def get_target_block_burn(netuid):
     return target_block_burn[key]
 
 
-def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float = 11, max_burn=3,
-             target_block=227):
+def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_seconds: float = 11, max_burn=3, target_block=227):
     global blocks_since_epoch
     subnet = subtensor.get_subnet_info(netuid=netuid)
     burn = subnet.burn.__float__()
@@ -88,7 +92,7 @@ def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_secon
     # parameters = subtensor.get_subnet_hyperparameters(netuid)
 
     if blocks_since_epoch != new_blocks_since_epoch:
-        bt.logging.info(f"Blocks_since_epoch: {new_blocks_since_epoch}. Burn: {burn}")
+        bt.logging.info(f"Subnet: {netuid}.Wait_seconds:{wait_seconds}.Target_block: {target_block}.Blocks_since_epoch:{new_blocks_since_epoch}.Burn: {burn}")
 
     blocks_since_epoch = new_blocks_since_epoch
     if blocks_since_epoch == target_block and burn < max_burn:
@@ -154,7 +158,6 @@ if __name__ == "__main__":
     max_burn = args.max_burn
     network = args.network
     wait_seconds = args.wait_seconds
-
     subtensor = bt.subtensor(network=network)
 
     wallet = bt.wallet(name=wallet_name, hotkey=hotkey)
@@ -162,10 +165,12 @@ if __name__ == "__main__":
 
     while True:
         try:
+            start_time = datetime.now()
             target_block = get_target_block_burn(netuid)
-            bt.logging.info(f"subnet: {netuid}. wait_seconds:{wait_seconds}. target_block: {target_block}")
-            register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=227)
+            register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=target_block)
             time.sleep(1)
+            end_time = datetime.now()
+            elapsed_time = (end_time - start_time).total_seconds()
         except Exception as e:
             bt.logging.error("[REGISTER] Error: ", e)
             time.sleep(30)
