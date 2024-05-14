@@ -85,10 +85,9 @@ def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_secon
     subnet = subtensor.get_subnet_info(netuid=netuid)
     burn = subnet.burn.__float__()
     new_blocks_since_epoch = subnet.blocks_since_epoch
-    # parameters = subtensor.get_subnet_hyperparameters(netuid)
 
     if blocks_since_epoch != new_blocks_since_epoch:
-        bt.logging.info(f"Blocks_since_epoch: {new_blocks_since_epoch}. Burn: {burn}")
+        bt.logging.info(f"Subnet: {netuid}.Wait_seconds:{wait_seconds}.Target_block: {target_block}.Blocks_since_epoch:{new_blocks_since_epoch}.Burn: {burn}")
 
     blocks_since_epoch = new_blocks_since_epoch
     if blocks_since_epoch == target_block and burn < max_burn:
@@ -163,8 +162,7 @@ if __name__ == "__main__":
     while True:
         try:
             target_block = get_target_block_burn(netuid)
-            bt.logging.info(f"subnet: {netuid}. wait_seconds:{wait_seconds}. target_block: {target_block}")
-            register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=227)
+            register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=target_block)
             time.sleep(1)
         except Exception as e:
             bt.logging.error("[REGISTER] Error: ", e)
