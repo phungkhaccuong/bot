@@ -134,6 +134,8 @@ def is_ignore_block(netuid, new_blocks_since_epoch):
         return True
     if netuid == 32 and new_blocks_since_epoch == 327:
         return True
+    if netuid == 33 and new_blocks_since_epoch == 328:
+        return True
     return False
 
 
