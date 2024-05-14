@@ -30,9 +30,9 @@ def save_target_block_burn_of_all_subnet(data):
 def find_target_block_burn(new_blocks_since_epoch):
     target_block_burn = new_blocks_since_epoch - 2
     if target_block_burn == -1:
-        target_block_burn = 359
+        target_block_burn = 360
     elif target_block_burn == -2:
-        target_block_burn = 358
+        target_block_burn = 359
     return target_block_burn
 
 
