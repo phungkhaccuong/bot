@@ -10,9 +10,13 @@ load_dotenv()
 
 my_netuids = [10]
 
-tele_chat_id = os.getenv("TELE_CHAT_ID")
-tele_report_token = os.getenv("TELE_REPORT_TOKEN")
-tele_chat_id = "-4151737386"
+# tele_chat_id = '-4151737386'
+# tele_report_token = '6408369939:AAHKfnIxyihyXoJ3p1WNN2cgaSD4ielBJtw'
+
+tele_report_token = '6768286803:AAEOT-8Auf2FQWlApf5pyrl81G_g0x90gwU'
+tele_chat_id = '1205550456'
+
+reward_map = {}
 
 def main():
     while True:

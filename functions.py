@@ -2,6 +2,11 @@ import requests
 from prettytable import PrettyTable
 import pandas as pd
 from io import StringIO
+import json
+
+A_BILLION = 1000000000
+
+MAX_WEIGHTS_LIMIT = 65535
 
 
 def send_balance_report(subtensor, cold_keys, total_map, tele_chat_id,
@@ -157,6 +162,20 @@ def send_balance_report_old(subtensor, cold_keys, total_map, tele_chat_id,
 
 
 def get_subnet_data(netuid):
+    url = "https://api.subquery.network/sq/TaoStats/bittensor-subnets"
+
+    payload = "{\"query\":\"query ($first: Int!, $offset: Int!, $filter: NeuronInfoFilter, $order: [NeuronInfosOrderBy!]!) {\\n\\t\\t\\tneuronInfos(first: $first, offset: $offset, filter: $filter, orderBy: $order) {\\n\\t\\t\\t\\tnodes {\\n\\t\\t\\t\\t\\tid\\n\\t\\t\\t\\t\\tactive\\n\\t\\t\\t\\t\\taxonIp\\n\\t\\t\\t\\t\\taxonPort\\n\\t\\t\\t\\t\\tcoldkey\\n\\t\\t\\t\\t\\tconsensus\\n\\t\\t\\t\\t\\tdailyReward\\n\\t\\t\\t\\t\\tdividends\\n\\t\\t\\t\\t\\temission\\n\\t\\t\\t\\t\\thotkey\\n\\t\\t\\t\\t\\tincentive\\n\\t\\t\\t\\t\\tisImmunityPeriod\\n\\t\\t\\t\\t\\tupdated\\n\\t\\t\\t\\t\\tnetUid\\n\\t\\t\\t\\t\\trank\\n\\t\\t\\t\\t\\tregisteredAt\\n\\t\\t\\t\\t\\tstake\\n\\t\\t\\t\\t\\tuid\\n\\t\\t\\t\\t\\ttrust\\n\\t\\t\\t\\t\\tvalidatorPermit\\n\\t\\t\\t\\t\\tvalidatorTrust\\n\\t\\t\\t\\t}\\n\\t\\t\\t\\tpageInfo {\\n\\t\\t\\t\\t\\tendCursor\\n\\t\\t\\t\\t\\thasNextPage\\n\\t\\t\\t\\t\\thasPreviousPage\\n\\t\\t\\t\\t}\\n\\t\\t\\t\\ttotalCount\\n\\t\\t\\t}\\n\\t\\t}\",\"variables\":{\"offset\":0,\"first\":50,\"filter\":{\"netUid\":{\"equalTo\":10},\"or\":[{\"coldkey\":{\"includesInsensitive\":\"5EAWhStQFp4F5AEG43eokdJtE2ZKwtLuFzcoRdXC2wrru1DZ\"}},{\"coldkey\":{\"includesInsensitive\":\"5ENufmcvZQBhHaCC6UUGAPVzpQk4XvMWsoUzQmLUP1Mpoq9Y\"}},{\"coldkey\":{\"includesInsensitive\":\"5EUc6rY7fup2aH94bCCCuJa41gbRh7C4SvLVPHvVNrcmtB8C\"}}]},\"order\":\"STAKE_DESC\"}}"
+    headers = {
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    tables = pd.read_html(StringIO(response.text))
+    return tables[0]
+
+
+def get_subnet_data_old(netuid):
     url = 'https://taostats.io/wp-admin/admin-ajax.php'
     data = {
         'action': 'metagraph_table',
@@ -190,23 +209,103 @@ def get_reward_of_cold_keys(cold_keys):
     return daily_rewards
 
 
-def get_subnet_reward(netuid, cold_keys, rewards, reward_map, hotkeys):
-    x = PrettyTable()
-    x.field_names = ["STT", "UID", "HOT", "INCENTIVE", "REWARDS", "RANK"]
-    url = 'https://taostats.io/wp-admin/admin-ajax.php'
-    data = {
-        'action': 'metagraph_table',
-        'this_netuid': netuid
+def get_all_data_subnet(netuid):
+    url = "https://api.subquery.network/sq/TaoStats/bittensor-subnets"
+    headers = {
+        'Content-Type': 'application/json'
     }
 
-    response = requests.post(url, data=data)
+    # Initialize a list to store all fetched data
+    all_data = []
+    total_count = 256  # Total rows you want to fetch
+    rows_per_request = 100  # Number of rows per API call
+    offset = 0  # Starting offset
 
-    tables = pd.read_html(StringIO(response.text))
-    df = tables[0].sort_values(by='INCENTIVE', ascending=True)
-    incentives = df['INCENTIVE']
+    # Loop to fetch data in batches until all rows are fetched
+    while offset < total_count:
+        payload = {
+            "query": """
+            query ($first: Int!, $offset: Int!, $filter: NeuronInfoFilter, $order: [NeuronInfosOrderBy!]!) {
+                neuronInfos(first: $first, offset: $offset, filter: $filter, orderBy: $order) {
+                    nodes {
+                        id
+                        active
+                        axonIp
+                        axonPort
+                        coldkey
+                        consensus
+                        dailyReward
+                        dividends
+                        emission
+                        hotkey
+                        incentive
+                        isImmunityPeriod
+                        updated
+                        netUid
+                        rank
+                        registeredAt
+                        stake
+                        uid
+                        trust
+                        validatorPermit
+                        validatorTrust
+                    }
+                    pageInfo {
+                        endCursor
+                        hasNextPage
+                        hasPreviousPage
+                    }
+                    totalCount
+                }
+            }
+            """,
+            "variables": {
+                "first": rows_per_request,
+                "offset": offset,
+                "filter": {
+                    "netUid": {"equalTo": netuid}
+                },
+                "order": "STAKE_DESC"
+            }
+        }
+
+        # Make the POST request to the API
+        response = requests.post(url, headers=headers, data=json.dumps(payload))
+        response_data = response.json()
+        # Check for errors in the response
+        if 'errors' in response_data:
+            print("Error in response:", response_data['errors'])
+            break
+
+        # Extract the nodes data and add it to the all_data list
+        neuron_infos = response_data['data']['neuronInfos']['nodes']
+        all_data.extend(neuron_infos)
+
+        # Update the offset for the next iteration
+        offset += rows_per_request
+
+    # Verify the number of rows fetched
+    print(f"Total rows fetched: {len(all_data)}")
+
+    return all_data
+
+
+def get_subnet_reward(netuid, cold_keys, rewards, reward_map, hotkeys):
+    x = PrettyTable()
+    x.field_names = ["INDEX", "UID", "HOT", "INCENTIVE", "REWARDS", "RANK"]
+
+    all_data = get_all_data_subnet(netuid)
+    tables = pd.DataFrame(all_data)
+    df = tables.sort_values(by='incentive', ascending=True)
+
+    df['dailyReward'] = df['dailyReward'].apply(lambda x: round(x / A_BILLION, 5))
+    df['incentive'] = df['incentive'].apply(lambda x: round(x / MAX_WEIGHTS_LIMIT, 5))
+
+
+    incentives = df['incentive']
 
     has_change = False
-    df = df[df['COLDKEY'].isin(cold_keys)]
+    df = df[df['coldkey'].isin(cold_keys)]
     if df.empty:
         return '', has_change
 
@@ -214,25 +313,26 @@ def get_subnet_reward(netuid, cold_keys, rewards, reward_map, hotkeys):
 
     i = 0
     for index, row in df.iterrows():
-        key = f'{netuid}_{row["UID"]}'
+
+        key = f'{netuid}_{row["uid"]}'
         arrow = ''
         if key in reward_map:
-            if reward_map[key] > row['DAILY REWARDS']:
+            if reward_map[key] > row['dailyReward']:
                 arrow = '↓'
                 has_change = True
-            elif reward_map[key] < row['DAILY REWARDS']:
+            elif reward_map[key] < row['dailyReward']:
                 arrow = '↑'
                 has_change = True
         else:
             has_change = True
 
         i += 1
-        reward_map[key] = row['DAILY REWARDS']
-        hot_name = hotkeys.get(row['HOTKEY'], '')
-        x.add_row([i, row['UID'], hot_name, row['INCENTIVE'],
-                   '{0:.3f}'.format(row['DAILY REWARDS']) + arrow,
-                   incentives[incentives < row['INCENTIVE']].count() + 1])
-        rewards.append(row['DAILY REWARDS'])
+        reward_map[key] = row['dailyReward']
+        hot_name = hotkeys.get(row['hotkey'], '')
+        x.add_row([i, row['uid'], hot_name, row['incentive'],
+                   '{0:.3f}'.format(row['dailyReward']) + arrow,
+                   incentives[incentives < row['incentive']].count() + 1])
+        rewards.append(row['dailyReward'])
 
     return x.get_string(), has_change
 

@@ -11,8 +11,8 @@ load_dotenv()
 
 total_map = {}
 
-tele_chat_id = os.getenv("TELE_CHAT_ID")
-tele_report_token = os.getenv("TELE_REPORT_TOKEN")
+# tele_chat_id = os.getenv("TELE_CHAT_ID")
+# tele_report_token = os.getenv("TELE_REPORT_TOKEN")
 
 tele_chat_id = '-1002092781171'
 tele_report_token = '7117929777:AAED-5iaE_-SQWkg7Jouo31xQJeNnF_f8cg'

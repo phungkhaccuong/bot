@@ -4,8 +4,13 @@ import time
 import os
 
 import logging
+from datetime import datetime
 
-from register_bot.block_burn import path_file_name, create_key_in_json_file
+path_file_name = 'register_bot/target_block_burn.json'
+
+
+def create_key_in_json_file(netuid):
+    return f"SN_{netuid}"
 
 
 def setup_logger():
@@ -87,7 +92,8 @@ def register(subtensor: bt.subtensor, wallet: bt.wallet, hotkey: str, wait_secon
     new_blocks_since_epoch = subnet.blocks_since_epoch
 
     if blocks_since_epoch != new_blocks_since_epoch:
-        bt.logging.info(f"Subnet: {netuid}.Wait_seconds:{wait_seconds}.Target_block: {target_block}.Blocks_since_epoch:{new_blocks_since_epoch}.Burn: {burn}")
+        bt.logging.info(
+            f"Subnet: {netuid}.Wait_seconds:{wait_seconds}.Target_block: {target_block}.Blocks_since_epoch:{new_blocks_since_epoch}.Burn: {burn}")
 
     blocks_since_epoch = new_blocks_since_epoch
     if blocks_since_epoch == target_block and burn < max_burn:
@@ -161,9 +167,13 @@ if __name__ == "__main__":
 
     while True:
         try:
+            start_time = datetime.now()
             target_block = get_target_block_burn(netuid)
             register(subtensor, wallet, hotkey, wait_seconds=wait_seconds, max_burn=max_burn, target_block=target_block)
             time.sleep(1)
+            end_time = datetime.now()
+            elapsed_time = (end_time - start_time).total_seconds()
+            print(f'elapsed_time:{elapsed_time}')
         except Exception as e:
             bt.logging.error("[REGISTER] Error: ", e)
             time.sleep(30)
